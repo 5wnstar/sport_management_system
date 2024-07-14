@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class User(AbstractUser):
     USER_TYPE_CHOICES = (
@@ -14,5 +14,4 @@ class Coach(models.Model):
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    team = models.ForeignKey('teams.Team', on_delete=models.SET_NULL, null=True, blank=True)
-
+    team = models.ForeignKey('teams.Team', related_name='team_players', on_delete=models.SET_NULL, null=True, blank=True)
